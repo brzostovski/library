@@ -38,6 +38,8 @@ footer {
 header {
   background-color: var(--bg-secondary-color);
 
+  font-weight: bold;
+
   position: sticky;
   top: 0;
 
