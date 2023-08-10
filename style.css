@@ -119,6 +119,14 @@ main button {
   transition-duration: var(--normal-transition-duration);
 }
 
+main button#confirm {
+  background-color: green;
+}
+
+main button#discard {
+  background-color: red;
+}
+
 main button:hover {
   cursor: pointer;
 
