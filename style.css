@@ -2,12 +2,18 @@
   /* COLORS */
   --bg-main-color: rgb(69, 69, 69);
   --bg-secondary-color: rgb(26, 26, 26);
+  --table-bg-secondary-color: rgb(100, 100, 100);
   --font-main-color: white;
   --link-visited: gray;
 
   /* DIMENSIONS */
-  --main-padding: 20px;
-  --main-border-radius: 10px;
+    /* Padding */
+    --main-padding: 20px;
+    --table-padding: 5px;
+    /* Borders */
+    --main-border-radius: 10px;
+    /* Widths */
+    --table-cell-min-width: 100px;
 }
 
 * {
@@ -53,6 +59,28 @@ main {
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+}
+
+table,
+th,
+td {
+  border: 1px solid var(--font-main-color);
+  border-collapse: collapse;
+}
+
+th,
+td {
+  min-width: var(--table-cell-min-width);
+
+  padding: var(--table-padding);
+}
+
+th {
+  text-decoration: underline;
+}
+
+tr:nth-of-type(2n) {
+  background-color: var(--table-bg-secondary-color);
 }
 
 footer {
