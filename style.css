@@ -123,7 +123,7 @@ main button#confirm {
   background-color: green;
 }
 
-main button#discard {
+main button#cancel {
   background-color: red;
 }
 
