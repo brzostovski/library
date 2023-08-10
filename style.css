@@ -68,6 +68,16 @@ td {
   border-collapse: collapse;
 }
 
+caption {
+  position: relative;
+}
+
+caption > em {
+  position: absolute;
+  top: -1.5rem;
+  left: 0;
+}
+
 th,
 td {
   min-width: var(--table-cell-min-width);
