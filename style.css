@@ -2,18 +2,26 @@
   /* COLORS */
   --bg-main-color: rgb(69, 69, 69);
   --bg-secondary-color: rgb(26, 26, 26);
+  --bg-click-color: brightness(0.7);
   --table-bg-secondary-color: rgb(100, 100, 100);
+  --button-bg-color: dodgerblue;
   --font-main-color: white;
   --link-visited: gray;
+  --shadow-color: rgba(0, 0, 0, 0.5);
 
   /* DIMENSIONS */
+    /* Margin */
+    --secondary-margin: 20px;
     /* Padding */
     --main-padding: 20px;
-    --table-padding: 5px;
+    --secondary-padding: 5px;
     /* Borders */
     --main-border-radius: 10px;
     /* Widths */
     --table-cell-min-width: 100px;
+
+  /* DURATIONS */
+  --normal-transition-duration: 0.2s;
 }
 
 * {
@@ -56,6 +64,7 @@ header {
 }
 
 main {
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
@@ -82,7 +91,7 @@ th,
 td {
   min-width: var(--table-cell-min-width);
 
-  padding: var(--table-padding);
+  padding: var(--secondary-padding);
 }
 
 th {
@@ -91,6 +100,39 @@ th {
 
 tr:nth-of-type(2n) {
   background-color: var(--table-bg-secondary-color);
+}
+
+form {
+  display: none;
+}
+
+main button {
+  all: unset;
+
+  margin: var(--secondary-margin);
+  padding: var(--secondary-padding);
+
+  font-weight: bold;
+
+  background-color: var(--button-bg-color);
+
+  border-radius: var(--main-border-radius);
+
+  box-shadow: 4px 4px 8px var(--shadow-color);
+
+  transition-duration: var(--normal-transition-duration);
+}
+
+main button:hover {
+  cursor: pointer;
+
+  scale: 1.05;
+}
+
+main button:active {
+  filter: var(--bg-click-color);
+
+  scale: 1;
 }
 
 footer {
