@@ -102,10 +102,6 @@ tr:nth-of-type(2n) {
   background-color: var(--table-bg-secondary-color);
 }
 
-form {
-  display: none;
-}
-
 main button {
   all: unset;
 
@@ -159,4 +155,8 @@ a:visited {
 
 .flex-container {
   display: flex;
+}
+
+.hidden {
+  display: none;
 }
