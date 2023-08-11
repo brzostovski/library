@@ -4,10 +4,13 @@ const ADD_BOOK_BUTTON = document.querySelector('#add-book-button');
 const CANCEL_BUTTON = document.querySelector('#cancel');
 const CONFIRM_BUTTON = document.querySelector('#confirm');
 
+const BOOK_READ = '✅';
+const BOOK_NOT_READ = '❌';
+
 let myLibrary = [
   theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 295, true),
   harryPotter = new Book('Harry Potter i Zakon Feniksa', 'J.K. Rowling', 600, true),
-  dziennikiGwiazdowe = new Book('Dzienniki Gwiazdowe', 'S. Lem', 300, true),
+  dziennikiGwiazdowe = new Book('Dzienniki Gwiazdowe', 'Stanisław Lem', 300, true),
 ];
 
 function Book(title, author, pages, read) {
@@ -30,11 +33,20 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
       <th scope="col">Read?</th>
     </tr>`;
   library.forEach(book => {
-    let newRow = '<tr>';
+    let newRow = `<tr data-attribute = "${library.indexOf(book)}">`;
     for (key in book) {
-      (key === 'title')
-        ? (newRow += `<td>"${book[key]}"</td>`)
-        : (newRow += `<td>${book[key]}</td>`);
+      switch (key) {
+        case 'title':
+          newRow += `<td>"${book[key]}"</td>`;
+          break;
+        case 'read':
+          (book[key] === true)
+            ? (newRow += `<td>${BOOK_READ}</td>`)
+            : (newRow += `<td>${BOOK_NOT_READ}</td>`);
+          break;
+        default:
+          newRow += `<td>${book[key]}</td>`;
+      }
     }
     table.innerHTML += `${newRow}</tr>`;
   });
