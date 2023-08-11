@@ -10,9 +10,9 @@ const BOOK_NOT_READ = '❌';
 let deleteButtons;
 
 let myLibrary = [
-  theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 295, true),
-  harryPotter = new Book('Harry Potter i Zakon Feniksa', 'J.K. Rowling', 600, true),
-  dziennikiGwiazdowe = new Book('Dzienniki Gwiazdowe', 'Stanisław Lem', 300, true),
+  theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 295, 1),
+  harryPotter = new Book('Harry Potter i Zakon Feniksa', 'J.K. Rowling', 600, 1),
+  dziennikiGwiazdowe = new Book('Dzienniki Gwiazdowe', 'Stanisław Lem', 300, 1),
 ];
 
 function Book(title, author, pages, read) {
@@ -26,6 +26,10 @@ function addBookToLibrary(book, library = myLibrary) {
   library.push(book);
 }
 
+function removeBookFromLibrary(index) {
+  myLibrary.splice(index, 1);
+}
+
 function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
   table.innerHTML =
     `<tr>
@@ -37,33 +41,31 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
     </tr>`;
   library.forEach(book => {
     let index = library.indexOf(book);
-    let newRow = `<tr data-attribute="${index}">`;
+    let newRow = `<tr data-index="${index}">`;
     for (key in book) {
       switch (key) {
         case 'title':
           newRow += `<td>"${book[key]}"</td>`;
           break;
-        case 'read':
-          (book[key] === true)
-            ? (newRow += `<td>${BOOK_READ}</td>`)
-            : (newRow += `<td>${BOOK_NOT_READ}</td>`);
-          break;
+         case 'read':
+           (parseInt(book[key]) === 1)
+             ? (newRow += `<td>${BOOK_READ}</td>`)
+             : (newRow += `<td>${BOOK_NOT_READ}</td>`);
+           break;
         default:
           newRow += `<td>${book[key]}</td>`;
       }
     }
     newRow +=
       `<td>
-        <button class="delete-book" data-attribute="${index}">
+        <button class="delete-book" data-index="${index}">
           Delete
         </button>
       </td>`;
     table.innerHTML += `${newRow}</tr>`;
   });
   deleteButtons = document.querySelectorAll('.delete-book');
-  deleteButtons.forEach(button => {
-    button.addEventListener('click', () => console.log('click'));
-  });
+  deleteButtonListener();
 }
 
 function showForm() {
@@ -114,3 +116,13 @@ CANCEL_BUTTON.addEventListener('click', () => {
   NEW_BOOK_FORM.reset();
   hideForm();
 });
+
+function deleteButtonListener() {
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      let removeIndex = button.dataset.index;
+      removeBookFromLibrary(removeIndex);
+      displayBooks();
+    });
+  });
+}
