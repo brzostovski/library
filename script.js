@@ -64,11 +64,13 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
           newRow += `<td>${book[key]}</td>`;
       }
     }
-    newRow += `<td>
+    newRow += (
+      `<td>
         <button class="delete-book" data-index="${index}">
           Delete
         </button>
-      </td>`;
+      </td>`
+    );
     table.innerHTML += `${newRow}</tr>`;
   });
   deleteButtons = document.querySelectorAll(".delete-book");
@@ -82,15 +84,15 @@ function showForm() {
 
 function sanitize(string) {
   const map = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#x27;',
-      "/": '&#x2F;',
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#x27;",
+    "/": "&#x2F;",
   };
-  const reg = /[&<>"'/]/ig;
-  return string.replace(reg, (match)=>(map[match]));
+  const reg = /[&<>"'/]/gi;
+  return string.replace(reg, (match) => map[match]);
 }
 
 function confirmForm() {
