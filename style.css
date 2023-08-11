@@ -81,13 +81,7 @@ td {
 }
 
 caption {
-  position: relative;
-}
-
-caption > em {
-  position: absolute;
-  top: -1.5rem;
-  left: 0;
+  text-align: left;
 }
 
 tbody > tr > :nth-child(3),
