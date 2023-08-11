@@ -22,6 +22,13 @@ function addBookToLibrary(book, library = myLibrary) {
 }
 
 function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
+  table.innerHTML =
+    `<tr>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Pages</th>
+      <th scope="col">Read?</th>
+    </tr>`;
   library.forEach(book => {
     let newRow = '<tr>';
     for (key in book) {
@@ -39,8 +46,12 @@ function showForm() {
 }
 
 function confirmForm() {
-  let title = document.getElementById('title').value;
-  let newBook = new Book(title);
+  let newBook = new Book(
+    document.getElementById('title').value,
+    document.getElementById('author').value,
+    document.getElementById('pages').value,
+    document.getElementsByName('read').value,
+  );
   addBookToLibrary(newBook);
 }
 
