@@ -7,6 +7,8 @@ const CONFIRM_BUTTON = document.querySelector('#confirm');
 const BOOK_READ = '✅';
 const BOOK_NOT_READ = '❌';
 
+let deleteButtons;
+
 let myLibrary = [
   theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 295, true),
   harryPotter = new Book('Harry Potter i Zakon Feniksa', 'J.K. Rowling', 600, true),
@@ -31,9 +33,11 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
       <th scope="col">Author</th>
       <th scope="col">Pages</th>
       <th scope="col">Read?</th>
+      <th scope="col">Delete</th>
     </tr>`;
   library.forEach(book => {
-    let newRow = `<tr data-attribute = "${library.indexOf(book)}">`;
+    let index = library.indexOf(book);
+    let newRow = `<tr data-attribute="${index}">`;
     for (key in book) {
       switch (key) {
         case 'title':
@@ -48,7 +52,17 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
           newRow += `<td>${book[key]}</td>`;
       }
     }
+    newRow +=
+      `<td>
+        <button class="delete-book" data-attribute="${index}">
+          Delete
+        </button>
+      </td>`;
     table.innerHTML += `${newRow}</tr>`;
+  });
+  deleteButtons = document.querySelectorAll('.delete-book');
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', () => console.log('click'));
   });
 }
 
