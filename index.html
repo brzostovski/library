@@ -13,28 +13,34 @@
     </header>
     <main class="flex-container">
       <table>
-        <caption><em>Table of books</em></caption>
-        <tbody class="books-table-body">
-        </tbody>
+        <caption>
+          <em>Table of books</em>
+        </caption>
+        <tbody class="books-table-body"></tbody>
       </table>
       <form name="new-book" method="post" action="#" class="hidden">
         <fieldset>
           <label for="title">Title:</label>
-          <input type="text" name="title" id="title" placeholder="The Hobbit">
+          <input type="text" name="title" id="title" placeholder="The Hobbit" />
         </fieldset>
         <fieldset>
           <label for="author">Author:</label>
-          <input type="text" name="author" id="author" placeholder="J.R.R Tolkien">
+          <input
+            type="text"
+            name="author"
+            id="author"
+            placeholder="J.R.R Tolkien"
+          />
         </fieldset>
         <fieldset>
           <label for="pages">Pages:</label>
-          <input type="number" name="pages" id="pages" placeholder="295">
+          <input type="number" name="pages" id="pages" placeholder="295" />
         </fieldset>
         <fieldset>
           <label for="yes-read">Read</label>
-          <input type="radio" id="yes-read" name="read" value="1" checked>
+          <input type="radio" id="yes-read" name="read" value="1" checked />
           <label for="no-read">Not read</label>
-          <input type="radio" id="no-read" name="read" value="0">
+          <input type="radio" id="no-read" name="read" value="0" />
         </fieldset>
         <button type="button" id="confirm">Confirm</button>
         <button type="button" id="cancel">Cancel</button>

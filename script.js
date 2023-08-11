@@ -1,8 +1,8 @@
-const BOOKS_TABLE = document.querySelector('.books-table-body');
-const NEW_BOOK_FORM = document.querySelector('form');
-const ADD_BOOK_BUTTON = document.querySelector('#add-book-button');
-const CANCEL_BUTTON = document.querySelector('#cancel');
-const CONFIRM_BUTTON = document.querySelector('#confirm');
+const BOOKS_TABLE = document.querySelector(".books-table-body");
+const NEW_BOOK_FORM = document.querySelector("form");
+const ADD_BOOK_BUTTON = document.querySelector("#add-book-button");
+const CANCEL_BUTTON = document.querySelector("#cancel");
+const CONFIRM_BUTTON = document.querySelector("#confirm");
 
 const BOOK_READ = `<button class="book-read">✅</button>`;
 const BOOK_NOT_READ = `<button class="book-read">❌</button>`;
@@ -10,9 +10,19 @@ const BOOK_NOT_READ = `<button class="book-read">❌</button>`;
 let deleteButtons;
 
 let myLibrary = [
-  theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 295, 1),
-  harryPotter = new Book('Harry Potter i Zakon Feniksa', 'J.K. Rowling', 600, 1),
-  dziennikiGwiazdowe = new Book('Dzienniki Gwiazdowe', 'Stanisław Lem', 300, 1),
+  (theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 295, 1)),
+  (harryPotter = new Book(
+    "Harry Potter i Zakon Feniksa",
+    "J.K. Rowling",
+    600,
+    1
+  )),
+  (dziennikiGwiazdowe = new Book(
+    "Dzienniki Gwiazdowe",
+    "Stanisław Lem",
+    300,
+    1
+  )),
 ];
 
 function Book(title, author, pages, read) {
@@ -31,94 +41,94 @@ function removeBookFromLibrary(index) {
 }
 
 function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
-  table.innerHTML =
-    `<tr>
+  table.innerHTML = `<tr>
       <th scope="col">Title</th>
       <th scope="col">Author</th>
       <th scope="col">Pages</th>
       <th scope="col">Read?</th>
     </tr>`;
-  library.forEach(book => {
+  library.forEach((book) => {
     let index = library.indexOf(book);
     let newRow = `<tr data-index="${index}">`;
     for (key in book) {
       switch (key) {
-        case 'title':
+        case "title":
           newRow += `<td>"${book[key]}"</td>`;
           break;
-         case 'read':
-           (parseInt(book[key]) === 1)
-             ? (newRow += `<td>${BOOK_READ}</td>`)
-             : (newRow += `<td>${BOOK_NOT_READ}</td>`);
-           break;
+        case "read":
+          parseInt(book[key]) === 1
+            ? (newRow += `<td>${BOOK_READ}</td>`)
+            : (newRow += `<td>${BOOK_NOT_READ}</td>`);
+          break;
         default:
           newRow += `<td>${book[key]}</td>`;
       }
     }
-    newRow +=
-      `<td>
+    newRow += `<td>
         <button class="delete-book" data-index="${index}">
           Delete
         </button>
       </td>`;
     table.innerHTML += `${newRow}</tr>`;
   });
-  deleteButtons = document.querySelectorAll('.delete-book');
+  deleteButtons = document.querySelectorAll(".delete-book");
   deleteButtonListener();
 }
 
 function showForm() {
-  NEW_BOOK_FORM.classList.remove('hidden');
-  ADD_BOOK_BUTTON.classList.add('hidden');
+  NEW_BOOK_FORM.classList.remove("hidden");
+  ADD_BOOK_BUTTON.classList.add("hidden");
 }
 
 function confirmForm() {
-  let title = document.getElementById('title').value;
-  let author = document.getElementById('author').value;
-  let pages = document.getElementById('pages').value;
+  let title = document.getElementById("title").value;
+  let author = document.getElementById("author").value;
+  let pages = document.getElementById("pages").value;
   let read;
 
-  let readState = document.getElementsByName('read');
+  let readState = document.getElementsByName("read");
   for (button of readState) {
-    if (button.checked) {read = button.value};
+    if (button.checked) {
+      read = button.value;
+    }
   }
 
   addBookToLibrary(new Book(title, author, pages, read));
 }
 
 function hideForm() {
-  NEW_BOOK_FORM.classList.add('hidden');
-  ADD_BOOK_BUTTON.classList.remove('hidden');
+  NEW_BOOK_FORM.classList.add("hidden");
+  ADD_BOOK_BUTTON.classList.remove("hidden");
 }
 
 function confirmAction() {
-  if (confirm('Are you sure?')) {
+  if (confirm("Are you sure?")) {
     return true;
   } else {
     return false;
   }
 }
 
-window.addEventListener('load', () => displayBooks());
+window.addEventListener("load", () => displayBooks());
 
-ADD_BOOK_BUTTON.addEventListener('click', () => showForm());
+ADD_BOOK_BUTTON.addEventListener("click", () => showForm());
 
-CONFIRM_BUTTON.addEventListener('click', () => {
+CONFIRM_BUTTON.addEventListener("click", () => {
   confirmForm();
-  BOOKS_TABLE.innerHTML = '';
+  BOOKS_TABLE.innerHTML = "";
   NEW_BOOK_FORM.reset();
   hideForm();
   displayBooks();
 });
 
-CANCEL_BUTTON.addEventListener('click', () => {
+CANCEL_BUTTON.addEventListener("click", () => {
   NEW_BOOK_FORM.reset();
   hideForm();
 });
 
 function deleteButtonListener() {
-  deleteButtons.forEach(button => {
-    button.addEventListener('click', () => {
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", () => {
       if (!confirmAction()) {
         return 0;
       } else {
