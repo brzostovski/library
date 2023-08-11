@@ -80,10 +80,23 @@ function showForm() {
   ADD_BOOK_BUTTON.classList.add("hidden");
 }
 
+function sanitize(string) {
+  const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;',
+      "/": '&#x2F;',
+  };
+  const reg = /[&<>"'/]/ig;
+  return string.replace(reg, (match)=>(map[match]));
+}
+
 function confirmForm() {
-  let title = document.getElementById("title").value;
-  let author = document.getElementById("author").value;
-  let pages = document.getElementById("pages").value;
+  let title = sanitize(document.getElementById("title").value);
+  let author = sanitize(document.getElementById("author").value);
+  let pages = parseInt(document.getElementById("pages").value);
   let read;
 
   let readState = document.getElementsByName("read");
