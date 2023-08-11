@@ -4,7 +4,7 @@
   --bg-secondary-color: rgb(26, 26, 26);
   --bg-click-color: brightness(0.7);
   --table-bg-secondary-color: rgb(100, 100, 100);
-  --button-bg-color: dodgerblue;
+  --accent-color: dodgerblue;
   --font-main-color: white;
   --link-visited: gray;
   --shadow-color: rgba(0, 0, 0, 0.5);
@@ -87,6 +87,10 @@ caption > em {
   left: 0;
 }
 
+table {
+  box-shadow: 8px 8px 8px var(--shadow-color);
+}
+
 th,
 td {
   min-width: var(--table-cell-min-width);
@@ -103,18 +107,18 @@ tr:nth-of-type(2n) {
 }
 
 tr:hover {
-  background-color: black;
+  background-color: var(--accent-color);
 }
 
 main button {
   all: unset;
 
   margin: var(--secondary-margin);
-  padding: var(--secondary-padding);
+  padding: var(--secondary-padding) calc(var(--secondary-padding) * 3);
 
   font-weight: bold;
 
-  background-color: var(--button-bg-color);
+  background-color: var(--accent-color);
 
   border-radius: var(--main-border-radius);
 
