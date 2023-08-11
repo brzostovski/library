@@ -23,8 +23,25 @@
           </tr>
         </tbody>
       </table>
-      <form action="#" class="hidden">
-        dummy
+      <form name="new-book" method="post" action="#" class="hidden">
+        <fieldset>
+          <label for="title">Title:</label>
+          <input type="text" name="title" id="title" placeholder="The Hobbit">
+        </fieldset>
+        <fieldset>
+          <label for="author">Author:</label>
+          <input type="text" name="author" id="author" placeholder="J.R.R Tolkien">
+        </fieldset>
+        <fieldset>
+          <label for="pages">Pages:</label>
+          <input type="number" name="pages" id="pages" placeholder="295">
+        </fieldset>
+        <fieldset>
+          <input type="radio" id="yes-read" name="read" value="true" checked>
+          <label for="yes-read">Read</label>
+          <input type="radio" id="no-read" name="read" value="false">
+          <label for="no-read">Not read</label>
+        </fieldset>
         <button type="submit" id="confirm">Confirm</button>
         <button type="button" id="cancel">Cancel</button>
       </form>
