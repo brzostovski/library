@@ -10,18 +10,18 @@
   --shadow-color: rgba(0, 0, 0, 0.5);
 
   /* DIMENSIONS */
-    /* Margin */
-    --main-margin: 10px;
-    --secondary-margin: 20px;
-    --form-margin: 10px;
-    /* Padding */
-    --main-padding: 20px;
-    --secondary-padding: 5px;
-    /* Borders */
-    --main-border-radius: 10px;
-    /* Widths */
-    --table-cell-min-width: 100px;
-    --label-width: 80px;
+  /* Margin */
+  --main-margin: 10px;
+  --secondary-margin: 20px;
+  --form-margin: 10px;
+  /* Padding */
+  --main-padding: 20px;
+  --secondary-padding: 5px;
+  /* Borders */
+  --main-border-radius: 10px;
+  /* Widths */
+  --table-cell-min-width: 100px;
+  --label-width: 80px;
 
   /* DURATIONS */
   --normal-transition-duration: 0.2s;
@@ -150,6 +150,10 @@ main button {
   transition-duration: var(--normal-transition-duration);
 }
 
+table button {
+  margin: 0;
+}
+
 main button:hover {
   cursor: pointer;
 
@@ -167,8 +171,6 @@ button.book-read {
 }
 
 button.delete-book {
-  margin: 0;
-
   background-color: red;
 }
 
