@@ -46,19 +46,28 @@ function showForm() {
 }
 
 function confirmForm() {
-  let newBook = new Book(
-    document.getElementById('title').value,
-    document.getElementById('author').value,
-    document.getElementById('pages').value,
-    document.getElementsByName('read').value,
-  );
-  addBookToLibrary(newBook);
+  let title = document.getElementById('title').value;
+  let author = document.getElementById('author').value;
+  let pages = document.getElementById('pages').value;
+  let read;
+
+  let readState = document.getElementsByName('read');
+  for (button of readState) {
+    if (button.checked) {read = button.value};
+  }
+
+  addBookToLibrary(new Book(title, author, pages, read));
+  NEW_BOOK_FORM.reset();
+}
+
+function hideForm() {
+  NEW_BOOK_FORM.classList.add('hidden');
+  ADD_BOOK_BUTTON.classList.remove('hidden');
 }
 
 function cancelForm() {
   if (confirm('Are you sure?')) {
-    NEW_BOOK_FORM.classList.add('hidden');
-    ADD_BOOK_BUTTON.classList.remove('hidden');
+    hideForm();
   } else {
     return 0;
   }
@@ -71,6 +80,7 @@ ADD_BOOK_BUTTON.addEventListener('click', () => showForm());
 CONFIRM_BUTTON.addEventListener('click', () => {
   confirmForm();
   BOOKS_TABLE.innerHTML = '';
+  hideForm();
   displayBooks();
 });
 
