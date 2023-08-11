@@ -37,7 +37,6 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
       <th scope="col">Author</th>
       <th scope="col">Pages</th>
       <th scope="col">Read?</th>
-      <th scope="col">Delete</th>
     </tr>`;
   library.forEach(book => {
     let index = library.indexOf(book);
