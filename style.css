@@ -90,10 +90,6 @@ caption > em {
   left: 0;
 }
 
-table {
-  box-shadow: 8px 8px 8px var(--shadow-color);
-}
-
 tbody > tr > :nth-child(3),
 tbody > tr > :nth-child(4),
 tbody > tr > :nth-child(5) {
