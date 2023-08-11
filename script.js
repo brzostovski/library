@@ -92,11 +92,11 @@ function hideForm() {
   ADD_BOOK_BUTTON.classList.remove('hidden');
 }
 
-function cancelForm() {
+function confirmAction() {
   if (confirm('Are you sure?')) {
-    hideForm();
+    return true;
   } else {
-    return 0;
+    return false;
   }
 }
 
@@ -120,9 +120,13 @@ CANCEL_BUTTON.addEventListener('click', () => {
 function deleteButtonListener() {
   deleteButtons.forEach(button => {
     button.addEventListener('click', () => {
-      let removeIndex = button.dataset.index;
-      removeBookFromLibrary(removeIndex);
-      displayBooks();
+      if (!confirmAction()) {
+        return 0;
+      } else {
+        let removeIndex = button.dataset.index;
+        removeBookFromLibrary(removeIndex);
+        displayBooks();
+      }
     });
   });
 }
