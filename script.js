@@ -83,7 +83,6 @@ function confirmForm() {
   }
 
   addBookToLibrary(new Book(title, author, pages, read));
-  NEW_BOOK_FORM.reset();
 }
 
 function hideForm() {
@@ -106,8 +105,12 @@ ADD_BOOK_BUTTON.addEventListener('click', () => showForm());
 CONFIRM_BUTTON.addEventListener('click', () => {
   confirmForm();
   BOOKS_TABLE.innerHTML = '';
+  NEW_BOOK_FORM.reset();
   hideForm();
   displayBooks();
 });
 
-CANCEL_BUTTON.addEventListener('click', () => cancelForm());
+CANCEL_BUTTON.addEventListener('click', () => {
+  NEW_BOOK_FORM.reset();
+  hideForm();
+});
