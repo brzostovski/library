@@ -4,8 +4,8 @@ const ADD_BOOK_BUTTON = document.querySelector('#add-book-button');
 const CANCEL_BUTTON = document.querySelector('#cancel');
 const CONFIRM_BUTTON = document.querySelector('#confirm');
 
-const BOOK_READ = '✅';
-const BOOK_NOT_READ = '❌';
+const BOOK_READ = `<button class="book-read">✅</button>`;
+const BOOK_NOT_READ = `<button class="book-read">❌</button>`;
 
 let deleteButtons;
 

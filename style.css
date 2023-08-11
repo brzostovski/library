@@ -150,6 +150,22 @@ main button {
   transition-duration: var(--normal-transition-duration);
 }
 
+main button:hover {
+  cursor: pointer;
+
+  scale: 1.05;
+}
+
+main button:active {
+  filter: var(--bg-click-color);
+
+  scale: 1;
+}
+
+button.book-read {
+  background-color: white;
+}
+
 button.delete-book {
   margin: 0;
 
@@ -162,18 +178,6 @@ main button#confirm {
 
 main button#cancel {
   background-color: red;
-}
-
-main button:hover {
-  cursor: pointer;
-
-  scale: 1.05;
-}
-
-main button:active {
-  filter: var(--bg-click-color);
-
-  scale: 1;
 }
 
 footer {
