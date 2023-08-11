@@ -148,6 +148,12 @@ main button {
   transition-duration: var(--normal-transition-duration);
 }
 
+button.delete-book {
+  margin: 0;
+
+  background-color: red;
+}
+
 main button#confirm {
   background-color: green;
 }
