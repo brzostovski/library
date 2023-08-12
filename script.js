@@ -110,13 +110,7 @@ function confirmForm() {
   for (key in newBook) {
     switch (key) {
       case "pages":
-        if (isNaN(newBook[key])) {
-          if (confirm('Number of pages will be set to "-"')) {
-            newBook[key] = '-';
-          } else {
-            return 0;
-          }
-        }
+        if (isNaN(newBook[key])) {newBook[key] = '-'};
         break;
       default:
         if (newBook[key] === "") {
