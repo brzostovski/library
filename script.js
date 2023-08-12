@@ -17,19 +17,9 @@ let readBookButtons;
 let removeBookButtons;
 
 let myLibrary = [
-  (theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 295, 1)),
-  (harryPotter = new Book(
-    "Harry Potter and the Order of the Phoenix",
-    "J.K. Rowling",
-    600,
-    1
-  )),
-  (dziennikiGwiazdowe = new Book(
-    "Dzienniki Gwiazdowe",
-    "Stanisław Lem",
-    300,
-    1
-  )),
+  (new Book("The Hobbit", "J.R.R Tolkien", 295, 1)),
+  (new Book("Carrie", "Stephen King", 200, 1)),
+  (new Book("Dzienniki Gwiazdowe", "Stanisław Lem", 300, 1)),
 ];
 
 function Book(title, author, pages, read) {
