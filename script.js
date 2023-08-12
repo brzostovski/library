@@ -47,23 +47,19 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
     let index = library.indexOf(book);
     let newRow = `<tr data-index="${index}">`;
     for (key in book) {
-      if (book[key] === 'unknown') {
-        newRow += `<td><em>${book[key]}</em></td>`;
-      } else {
-        switch (key) {
-          case "title":
-            newRow += `<td><em>${book[key]}</em></td>`;
-            break;
-          case "read":
-            newRow += `<td><button class="book-read" data-index="${index}">`;
-            parseInt(book[key]) === 1
-              ? (newRow += BOOK_READ_SYMBOL)
-              : (newRow += BOOK_NOT_READ_SYMBOL);
-            newRow += `</button></td>`;
-            break;
-          default:
-            newRow += `<td>${book[key]}</td>`;
-        }
+      switch (key) {
+        case "title":
+          newRow += `<td><em>${book[key]}</em></td>`;
+          break;
+        case "read":
+          newRow += `<td><button class="book-read" data-index="${index}">`;
+          parseInt(book[key]) === 1
+            ? (newRow += BOOK_READ_SYMBOL)
+            : (newRow += BOOK_NOT_READ_SYMBOL);
+          newRow += `</button></td>`;
+          break;
+        default:
+          newRow += `<td>${book[key]}</td>`;
       }
     }
     newRow += `<td>
@@ -115,8 +111,8 @@ function confirmForm() {
     switch (key) {
       case "pages":
         if (isNaN(newBook[key])) {
-          if (confirm('Number of pages is not a number')) {
-            newBook[key] = 'unknown';
+          if (confirm('Number of pages will be set to "-"')) {
+            newBook[key] = '-';
           } else {
             return 0;
           }
@@ -124,17 +120,17 @@ function confirmForm() {
         break;
       default:
         if (newBook[key] === "") {
-          newBook[key] = "unknown";
+          newBook[key] = "-";
         }
     }
   }
 
   if (
-    newBook["title"] === "unknown" &&
-    newBook["author"] === "unknown" &&
-    newBook["pages"] === "unknown"
+    newBook["title"] === "-" &&
+    newBook["author"] === "-" &&
+    newBook["pages"] === "-"
   ) {
-    alert('Enter at least some data');
+    alert('Cannot add book because no usable data was provided');
     return 0;
   } else {
     addBookToLibrary(newBook);
