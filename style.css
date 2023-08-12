@@ -50,6 +50,9 @@ body {
 
 header,
 footer {
+  position: relative;
+  z-index: 1;
+  
   padding: var(--main-padding);
 }
 
