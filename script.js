@@ -130,7 +130,7 @@ function confirmForm() {
     newBook["author"] === "-" &&
     newBook["pages"] === "-"
   ) {
-    alert('Cannot add book because no usable data was provided');
+    alert('Cannot add book - no usable data was provided');
     return 0;
   } else {
     addBookToLibrary(newBook);
