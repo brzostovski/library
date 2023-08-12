@@ -4,9 +4,17 @@ const ADD_BOOK_BUTTON = document.querySelector("#add-book-button");
 const CANCEL_BUTTON = document.querySelector("#cancel");
 const CONFIRM_BUTTON = document.querySelector("#confirm");
 
-const BOOK_READ = `<button class="book-read">✅</button>`;
-const BOOK_NOT_READ = `<button class="book-read">❌</button>`;
+const TABLE_HEADERS =
+  `<tr>
+  <th scope="col">Title</th>
+  <th scope="col">Author</th>
+  <th scope="col">Pages</th>
+  <th scope="col">Read?</th>
+  </tr>`
+const BOOK_READ_SYMBOL = `✅`;
+const BOOK_NOT_READ_SYMBOL = `❌`;
 
+let readButtons;
 let deleteButtons;
 
 let myLibrary = [
@@ -32,6 +40,12 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
+function toggleRead(book) {
+  (book['read'] === 1)
+    ? book['read'] = 0
+    : book['read'] = 1;
+}
+
 function addBookToLibrary(book, library = myLibrary) {
   library.push(book);
 }
@@ -41,12 +55,7 @@ function removeBookFromLibrary(index) {
 }
 
 function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
-  table.innerHTML = `<tr>
-      <th scope="col">Title</th>
-      <th scope="col">Author</th>
-      <th scope="col">Pages</th>
-      <th scope="col">Read?</th>
-    </tr>`;
+  table.innerHTML = TABLE_HEADERS;
   library.forEach((book) => {
     let index = library.indexOf(book);
     let newRow = `<tr data-index="${index}">`;
@@ -56,9 +65,11 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
           newRow += `<td>"${book[key]}"</td>`;
           break;
         case "read":
+          newRow += `<td><button class="book-read" data-index="${index}">`;
           parseInt(book[key]) === 1
-            ? (newRow += `<td>${BOOK_READ}</td>`)
-            : (newRow += `<td>${BOOK_NOT_READ}</td>`);
+            ? (newRow += BOOK_READ_SYMBOL)
+            : (newRow += BOOK_NOT_READ_SYMBOL);
+          newRow += `</button></td>`;
           break;
         default:
           newRow += `<td>${book[key]}</td>`;
@@ -73,6 +84,8 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
     );
     table.innerHTML += `${newRow}</tr>`;
   });
+  readButtons = document.querySelectorAll(".book-read");
+  readButtonListener();
   deleteButtons = document.querySelectorAll(".delete-book");
   deleteButtonListener();
 }
@@ -140,6 +153,16 @@ CANCEL_BUTTON.addEventListener("click", () => {
   NEW_BOOK_FORM.reset();
   hideForm();
 });
+
+function readButtonListener() {
+  readButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      let targetBook = myLibrary[button.dataset.index];
+      toggleRead(targetBook);
+      displayBooks();
+    });
+  });
+}
 
 function deleteButtonListener() {
   deleteButtons.forEach((button) => {
