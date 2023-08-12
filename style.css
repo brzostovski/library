@@ -118,6 +118,13 @@ tr:hover {
 
 form {
   margin-top: var(--secondary-margin);
+
+  border: 1px dashed var(--font-main-color);
+  border-radius: var(--main-border-radius);
+}
+
+legend {
+  margin: var(--main-margin);
 }
 
 fieldset {
