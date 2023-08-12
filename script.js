@@ -20,7 +20,7 @@ let deleteButtons;
 let myLibrary = [
   (theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 295, 1)),
   (harryPotter = new Book(
-    "Harry Potter i Zakon Feniksa",
+    "Harry Potter and the Order of the Phoenix",
     "J.K. Rowling",
     600,
     1
