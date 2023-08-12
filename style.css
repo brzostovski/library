@@ -20,7 +20,7 @@
   /* Borders */
   --main-border-radius: 10px;
   /* Widths */
-  --table-cell-min-width: 100px;
+  --table-cell-max-width: 64ch;
   --label-width: 80px;
 
   /* DURATIONS */
@@ -95,6 +95,10 @@ tbody > tr > :nth-child(5) {
 th,
 td {
   padding: var(--secondary-padding);
+
+  max-width: var(--table-cell-max-width);
+
+  overflow: auto;
 }
 
 th {
