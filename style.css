@@ -150,6 +150,8 @@ main button {
 
 table button {
   margin: 0;
+
+  scale: 0.7;
 }
 
 main button:hover {
@@ -158,10 +160,18 @@ main button:hover {
   scale: 1.05;
 }
 
+table button:hover {
+  scale: 0.8;
+}
+
 main button:active {
   filter: var(--bg-click-color);
 
   scale: 1;
+}
+
+table button:active {
+  scale: 0.7;
 }
 
 button.book-read {
