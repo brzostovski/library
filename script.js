@@ -13,8 +13,8 @@ const TABLE_HEADERS = `<tr>
 const BOOK_READ_SYMBOL = `✅`;
 const BOOK_NOT_READ_SYMBOL = `❌`;
 
-let readButtons;
-let deleteButtons;
+let readBookButtons;
+let removeBookButtons;
 
 let myLibrary = [
   (theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 295, 1)),
@@ -77,16 +77,16 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
       }
     }
     newRow += `<td>
-        <button class="delete-book" data-index="${index}">
-          Delete
+        <button class="remove-book" data-index="${index}">
+          Remove
         </button>
       </td>`;
     table.innerHTML += `${newRow}</tr>`;
   });
-  readButtons = document.querySelectorAll(".book-read");
-  readButtonListener();
-  deleteButtons = document.querySelectorAll(".delete-book");
-  deleteButtonListener();
+  readBookButtons = document.querySelectorAll(".book-read");
+  readBookButtonListener();
+  removeBookButtons = document.querySelectorAll(".remove-book");
+  removeBookButtonListener();
 }
 
 function showForm() {
@@ -183,8 +183,8 @@ CANCEL_BUTTON.addEventListener("click", () => {
   hideForm();
 });
 
-function readButtonListener() {
-  readButtons.forEach((button) => {
+function readBookButtonListener() {
+  readBookButtons.forEach((button) => {
     button.addEventListener("click", () => {
       let targetBook = myLibrary[button.dataset.index];
       toggleRead(targetBook);
@@ -193,8 +193,8 @@ function readButtonListener() {
   });
 }
 
-function deleteButtonListener() {
-  deleteButtons.forEach((button) => {
+function removeBookButtonListener() {
+  removeBookButtons.forEach((button) => {
     button.addEventListener("click", () => {
       if (!confirmAction()) {
         return 0;

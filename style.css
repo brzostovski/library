@@ -166,8 +166,9 @@ button.book-read {
   background-color: white;
 }
 
-button.delete-book {
-  background-color: red;
+button.remove-book {
+  background-color: lightpink;
+  color: red;
 }
 
 main button#confirm {
