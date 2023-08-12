@@ -81,6 +81,8 @@ td {
 }
 
 caption {
+  margin-bottom: var(--main-margin);
+
   text-align: left;
 }
 

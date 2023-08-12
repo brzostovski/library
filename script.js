@@ -62,7 +62,7 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
     for (key in book) {
       switch (key) {
         case "title":
-          newRow += `<td>"${book[key]}"</td>`;
+          newRow += `<td><em>${book[key]}</em></td>`;
           break;
         case "read":
           newRow += `<td><button class="book-read" data-index="${index}">`;
