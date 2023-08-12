@@ -94,8 +94,6 @@ tbody > tr > :nth-child(5) {
 
 th,
 td {
-  min-width: var(--table-cell-min-width);
-
   padding: var(--secondary-padding);
 }
 
