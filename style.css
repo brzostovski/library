@@ -139,6 +139,8 @@ label {
   width: var(--label-width);
 
   text-align: right;
+
+  cursor: pointer;
 }
 
 main button {
