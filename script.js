@@ -57,19 +57,23 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
     let index = library.indexOf(book);
     let newRow = `<tr data-index="${index}">`;
     for (key in book) {
-      switch (key) {
-        case "title":
-          newRow += `<td><em>${book[key]}</em></td>`;
-          break;
-        case "read":
-          newRow += `<td><button class="book-read" data-index="${index}">`;
-          parseInt(book[key]) === 1
-            ? (newRow += BOOK_READ_SYMBOL)
-            : (newRow += BOOK_NOT_READ_SYMBOL);
-          newRow += `</button></td>`;
-          break;
-        default:
-          newRow += `<td>${book[key]}</td>`;
+      if (book[key] === 'unknown') {
+        newRow += `<td><em>${book[key]}</em></td>`;
+      } else {
+        switch (key) {
+          case "title":
+            newRow += `<td><em>${book[key]}</em></td>`;
+            break;
+          case "read":
+            newRow += `<td><button class="book-read" data-index="${index}">`;
+            parseInt(book[key]) === 1
+              ? (newRow += BOOK_READ_SYMBOL)
+              : (newRow += BOOK_NOT_READ_SYMBOL);
+            newRow += `</button></td>`;
+            break;
+          default:
+            newRow += `<td>${book[key]}</td>`;
+        }
       }
     }
     newRow += `<td>
@@ -121,21 +125,26 @@ function confirmForm() {
     switch (key) {
       case "pages":
         if (isNaN(newBook[key])) {
-          newBook[key] = "<em>unknown</em>";
+          if (confirm('Number of pages is not a number')) {
+            newBook[key] = 'unknown';
+          } else {
+            return 0;
+          }
         }
         break;
       default:
         if (newBook[key] === "") {
-          newBook[key] = "<em>unknown</em>";
+          newBook[key] = "unknown";
         }
     }
   }
 
   if (
-    newBook["title"] === "<em>unknown</em>" &&
-    newBook["author"] === "<em>unknown</em>" &&
-    newBook["pages"] === "<em>unknown</em>"
+    newBook["title"] === "unknown" &&
+    newBook["author"] === "unknown" &&
+    newBook["pages"] === "unknown"
   ) {
+    alert('Enter at least some data');
     return 0;
   } else {
     addBookToLibrary(newBook);
@@ -160,7 +169,9 @@ window.addEventListener("load", () => displayBooks());
 ADD_BOOK_BUTTON.addEventListener("click", () => showForm());
 
 CONFIRM_BUTTON.addEventListener("click", () => {
-  confirmForm();
+  let formState = confirmForm();
+  if (formState === 0) {return 0};
+
   BOOKS_TABLE.innerHTML = "";
   NEW_BOOK_FORM.reset();
   hideForm();
