@@ -4,13 +4,12 @@ const ADD_BOOK_BUTTON = document.querySelector("#add-book-button");
 const CANCEL_BUTTON = document.querySelector("#cancel");
 const CONFIRM_BUTTON = document.querySelector("#confirm");
 
-const TABLE_HEADERS =
-  `<tr>
+const TABLE_HEADERS = `<tr>
   <th scope="col">Title</th>
   <th scope="col">Author</th>
   <th scope="col">Pages</th>
   <th scope="col">Read?</th>
-  </tr>`
+  </tr>`;
 const BOOK_READ_SYMBOL = `✅`;
 const BOOK_NOT_READ_SYMBOL = `❌`;
 
@@ -41,9 +40,7 @@ function Book(title, author, pages, read) {
 }
 
 function toggleRead(book) {
-  (book['read'] === 1)
-    ? book['read'] = 0
-    : book['read'] = 1;
+  book["read"] === 1 ? (book["read"] = 0) : (book["read"] = 1);
 }
 
 function addBookToLibrary(book, library = myLibrary) {
@@ -75,13 +72,11 @@ function displayBooks(library = myLibrary, table = BOOKS_TABLE) {
           newRow += `<td>${book[key]}</td>`;
       }
     }
-    newRow += (
-      `<td>
+    newRow += `<td>
         <button class="delete-book" data-index="${index}">
           Delete
         </button>
-      </td>`
-    );
+      </td>`;
     table.innerHTML += `${newRow}</tr>`;
   });
   readButtons = document.querySelectorAll(".book-read");
@@ -112,8 +107,8 @@ function confirmForm() {
   let title = sanitize(document.getElementById("title").value);
   let author = sanitize(document.getElementById("author").value);
   let pages = parseInt(document.getElementById("pages").value);
-  let read;
 
+  let read;
   let readState = document.getElementsByName("read");
   for (button of readState) {
     if (button.checked) {
@@ -121,7 +116,30 @@ function confirmForm() {
     }
   }
 
-  addBookToLibrary(new Book(title, author, pages, read));
+  let newBook = new Book(title, author, pages, read);
+  for (key in newBook) {
+    switch (key) {
+      case "pages":
+        if (isNaN(newBook[key])) {
+          newBook[key] = "<em>unknown</em>";
+        }
+        break;
+      default:
+        if (newBook[key] === "") {
+          newBook[key] = "<em>unknown</em>";
+        }
+    }
+  }
+
+  if (
+    newBook["title"] === "<em>unknown</em>" &&
+    newBook["author"] === "<em>unknown</em>" &&
+    newBook["pages"] === "<em>unknown</em>"
+  ) {
+    return 0;
+  } else {
+    addBookToLibrary(newBook);
+  }
 }
 
 function hideForm() {
@@ -156,7 +174,7 @@ CANCEL_BUTTON.addEventListener("click", () => {
 
 function readButtonListener() {
   readButtons.forEach((button) => {
-    button.addEventListener('click', () => {
+    button.addEventListener("click", () => {
       let targetBook = myLibrary[button.dataset.index];
       toggleRead(targetBook);
       displayBooks();
