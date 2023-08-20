@@ -16,18 +16,20 @@ const BOOK_NOT_READ_SYMBOL = `❌`;
 let readBookButtons;
 let removeBookButtons;
 
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+}
+
 let myLibrary = [
   (new Book("The Hobbit", "J.R.R Tolkien", 295, 1)),
   (new Book("Carrie", "Stephen King", 200, 1)),
   (new Book("Dzienniki Gwiazdowe", "Stanisław Lem", 300, 1)),
 ];
-
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
 
 function toggleRead(book) {
   book["read"] === 1 ? (book["read"] = 0) : (book["read"] = 1);
